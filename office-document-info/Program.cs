@@ -7,7 +7,7 @@ namespace office_document_info
 {
     class Program
     {
-        public static int Main(string[] args)
+        static int Main(string[] args)
         {
             return CommandLineApplication.Execute<Program>(args);
         }

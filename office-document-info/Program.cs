@@ -15,7 +15,7 @@ namespace office_document_info
         [Argument(0, Description = "Full path of docx file or folder")]
         public string FilePath { get; }
 
-        [Option(ShortName = "f", LongName = "format", Description = "Output format")]
+        [Option(ShortName = "f", LongName = "format", Description = "Output format, json or line")]
         public string Format { get; }
 
 
@@ -35,6 +35,12 @@ namespace office_document_info
 
         private void OnExecute()
         {
+            bool v = FilePath == null;
+            if (v)
+            {
+                Console.WriteLine("No input, please input file or folder");
+                return;
+            }
             bool isFolder = Directory.Exists(FilePath);
             string formatString = Format ?? "line";
             OutputFormat outputFormat = formatString == "json" ? OutputFormat.JSON : OutputFormat.LINE;
@@ -61,8 +67,6 @@ namespace office_document_info
                 var result = doc.GetInfo(FilePath, outputFormat);
                 Console.WriteLine(result);
             }
-
-
         }
     }
 }

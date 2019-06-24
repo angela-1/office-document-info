@@ -41,7 +41,7 @@ namespace office_document_info
         private string GetCode(string paragraph)
         {
             string value = "";
-            Regex reg = new Regex(@"^\S+〔\d{4}〕\d+号$");
+            Regex reg = new Regex(@"\S+〔\d{4}〕\d+号");
             Match match = reg.Match(paragraph);
             if (match.Success)
             {
@@ -53,7 +53,7 @@ namespace office_document_info
         private string GetSendTo(string paragraph)
         {
             string value = "";
-            Regex reg = new Regex(@"\S+[：:]$");
+            Regex reg = new Regex(@"^\S+[：:]$");
             Match match = reg.Match(paragraph);
             if (match.Success)
             {
